@@ -3,12 +3,42 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Threadline - SMS-Native Community OS Audit</title>
+<title>Threadline — SMS-Native Community OS · Build Case</title>
+<meta name="description" content="The full build case for Threadline: why this is the first build, the unit economics, the 5-year ARR model, the 90-day MVP plan, and the funding ask." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="../../_shared/styles.css" />
+<style>
+  .num-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+  .num-strip .num-card { border:1px solid var(--line); border-radius:8px; background:var(--surface); padding:18px; }
+  .num-strip .num-card .k { font-family: var(--font-mono); color: var(--muted); font-size: 0.7rem; text-transform: uppercase; }
+  .num-strip .num-card .v { margin-top:8px; font-family: var(--font-head); font-size: 1.7rem; font-weight: 800; color: var(--text); }
+  .num-strip .num-card .s { margin-top:6px; color: var(--muted); font-size:0.78rem; }
+  .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+  .pl-line { display:flex; justify-content:space-between; padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+  .pl-line:last-child { border-bottom: 0; }
+  .pl-line.total { font-weight: 800; color: var(--text); background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 6px; }
+  .pl-line .lbl { color: var(--muted); }
+  .pl-line .val { font-family: var(--font-mono); color: var(--text); }
+  .pl-line .val.neg { color: var(--danger); }
+  .pl-line .val.pos { color: var(--success); }
+  .sprint-row { border:1px solid var(--line); border-radius:8px; padding:16px; background: var(--surface); margin-top:10px; }
+  .sprint-row .wk { font-family: var(--font-mono); color: var(--accent); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sprint-row h4 { margin: 6px 0 8px; font-family: var(--font-head); font-weight: 800; font-size: 1.05rem; }
+  .sprint-row p { color: var(--muted); font-size: 0.88rem; }
+  .footnote { color: var(--muted); font-size: 0.78rem; margin-top: 14px; font-family: var(--font-mono); }
+  .assumption-tag { display:inline-block; padding:2px 8px; border:1px solid var(--line-strong); border-radius: 8px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--accent-2); text-transform: uppercase; letter-spacing:0.06em; }
+  .pillar-num { font-family: var(--font-head); font-size: 2.6rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  @media (max-width: 980px) {
+    .num-strip { grid-template-columns: repeat(2, 1fr); }
+    .pl-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .num-strip { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body class="brand-thread">
 <nav class="topbar">
@@ -24,195 +54,669 @@
 </nav>
 
 <main>
+  <!-- ============== COVER ============== -->
   <section class="doc-page cover">
     <div>
       <div class="doc-header">
         <a class="brand-lockup" href="../../index.html"><span class="brand-mark"></span><span>Threadline</span></a>
-        <div class="label">COMPANY 03 · SMS-NATIVE COMMUNITY OS</div>
+        <div class="label">COMPANY 03 · SMS-NATIVE COMMUNITY OS · BUILD CASE v2</div>
       </div>
-      <h1 class="doc-title">The inbox-native community brain.</h1>
+      <h1 class="doc-title">The inbox is the community. The desk is the company.</h1>
       <p class="doc-subtitle">
-        A conversational SMS platform for curated, high-context communities where members text, RSVP, request intros, receive drops, and get human-quality operator responses without opening another app.
+        Threadline is one operator running a 1,000-5,000 person relationship graph through SMS, with AI-assisted triage, intro brokering, event RSVP, and member memory. The buyer is a paid-community operator who is already losing the engagement war on Discord, Circle, and Geneva, and would pay $799-$5,000/month to stop logging into another room.
       </p>
       <div class="tag-row">
         <span class="tag">SMS first</span>
-        <span class="tag">Curated communities</span>
-        <span class="tag">AI operator assist</span>
-        <span class="tag">Best first build</span>
+        <span class="tag">Paid premium communities</span>
+        <span class="tag">AI assist · human approved</span>
+        <span class="tag">90-day MVP</span>
+        <span class="tag">Pre-seed: $1.4M</span>
       </div>
     </div>
     <div class="metric-strip">
-      <div class="metric"><div class="k">ASSAY FIT</div><div class="v">8.3/10</div></div>
-      <div class="metric"><div class="k">ABSOLUTE</div><div class="v">7.3/10</div></div>
-      <div class="metric"><div class="k">CALL</div><div class="v">Build</div></div>
-      <div class="metric"><div class="k">VALUE CASE</div><div class="v">$25M-$75M</div></div>
+      <div class="metric"><div class="k">ASSAY FIT</div><div class="v">8.3 / 10</div></div>
+      <div class="metric"><div class="k">YR-5 ARR TARGET</div><div class="v">$27M</div></div>
+      <div class="metric"><div class="k">BLENDED GROSS MARGIN</div><div class="v">78-82%</div></div>
+      <div class="metric"><div class="k">CALL</div><div class="v">Build first</div></div>
     </div>
   </section>
 
+  <!-- ============== WHY I'D BUILD IT ============== -->
   <section class="doc-page">
-    <div class="doc-header"><div class="label">01 · Core Read</div><div class="label">Threadline</div></div>
-    <h2 class="doc-title">This is the cleanest first build because the pain is behavioral.</h2>
-    <div class="doc-body two-col">
-      <div>
-        <p>
-          Community operators do not lose members because they lack another feed. They lose attention because members are busy, context-rich, and allergic to logging into a separate room just to find a relevant prompt, event, intro, or update.
-        </p>
-        <p style="margin-top:16px;">
-          Threadline's wedge is not "AI community." It is <strong>one operator running a 1,000-5,000 person relationship graph through SMS with AI-assisted triage</strong>.
-        </p>
-      </div>
-      <div class="callout">
-        <strong>Assay call:</strong> this is the best first build. The MVP can be narrow, the buyer pain is legible, SMS costs are modelable, and AI actually changes operator throughput. The hard part is compliance and support discipline, not proving whether members will read texts.
-      </div>
-    </div>
-    <div class="doc-footer"><span>Why now: AI assist + inbox fatigue</span><span>Why hard: 10DLC and unit economics</span></div>
-  </section>
-
-  <section class="doc-page">
-    <div class="doc-header"><div class="label">02 · Competitive Reality</div><div class="label">Sources S12-S19</div></div>
-    <h2 class="doc-title">SMS is validated. Community workflow is still open.</h2>
+    <div class="doc-header"><div class="label">01 · Why I'd Build It</div><div class="label">Conviction · 3 pillars</div></div>
+    <h2 class="doc-title">Three things have to be true for this to be a $250M outcome. All three are.</h2>
     <div class="doc-body">
-      <div class="table-wrap">
+
+      <div class="three-col">
+        <div class="score-card">
+          <div class="pillar-num">01</div>
+          <h3 style="margin-top:14px;">SMS is the only inbox that still gets a 90% open rate.</h3>
+          <p class="muted small" style="margin-top:12px;">
+            EZ Texting's 2026 read on the US SMS marketing market: $2.86B in 2023 → $9.96B projected by 2030 (≈19.5% CAGR) [S19]. Subtext shipped 10B messages and 28M subscribers in 2025, grew revenue 105% YoY, and reported sub-1% churn [S14]. The behavioral primitive — "I will read a text from this number" — is not just intact, it is the only direct channel that has not been arbitraged away by algorithmic feeds.
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="pillar-num">02</div>
+          <h3 style="margin-top:14px;">No one owns the operator desk for paid premium communities.</h3>
+          <p class="muted small" style="margin-top:12px;">
+            Community.com is broadcast-shaped and reads as celebrity/brand-scale [S15]. Subtext is media/audience messaging [S14]. Discord, Circle, Geneva, Mighty Networks, and Skool all bet that members will keep coming back to a feed/room — which is the exact behavior premium-community operators say is decaying. Threadline sits in the gap: a single-pane operator console where the phone inbox is the member surface and the desk is the brain.
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="pillar-num">03</div>
+          <h3 style="margin-top:14px;">AI now changes one operator's throughput by 4-6×.</h3>
+          <p class="muted small" style="margin-top:12px;">
+            One operator with AI-drafted replies, intent tagging, intro suggestions, and conversation summarization can credibly run a 5,000-person community at the quality bar that previously required 3-4 community managers. That is what shifts the per-customer ACV from $99 SaaS to $799-$5,000. The AI isn't the moat — operator workflow + relationship memory + compliance discipline is. AI is the oxygen that lets one person ride that desk.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:22px;">
+        <strong>My read:</strong> the existing community-tools space optimized for two things — content rooms and broadcast SMS. Threadline picks the unloved middle: <strong>private, high-context, paid relationships managed through one inbox</strong>. The reason no one has shipped this exact product is structural — SMS companies came up through the marketing-automation stack (campaigns, opt-ins, drip flows), and community companies came up through the forum/feed stack (rooms, threads, courses). Neither parent gives birth to "concierge desk." Threadline does.
+      </div>
+    </div>
+    <div class="doc-footer"><span>Conviction call: build</span><span>Wedge: paid premium communities, 1K-5K members</span></div>
+  </section>
+
+  <!-- ============== BUYER REALITY ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">02 · Buyer Reality</div><div class="label">ICP · willingness to pay</div></div>
+    <h2 class="doc-title">The buyer is one human running a paid relationship graph that is losing engagement to feeds.</h2>
+    <div class="doc-body">
+
+      <div class="num-strip">
+        <div class="num-card">
+          <div class="k">Avg paid-community price</div>
+          <div class="v">$60 / mo</div>
+          <div class="s">Mid-tier premium memberships (Skool, Circle, Patreon T3, Substack paid). <span class="assumption-tag">Model assumption</span></div>
+        </div>
+        <div class="num-card">
+          <div class="k">Members per ICP community</div>
+          <div class="v">1.5K-5K</div>
+          <div class="s">Sweet-spot for one-operator throughput with AI assist. Under 1K = doesn't justify $799/mo. Over 5K = needs a CSM team.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">Implied member ARR per ICP</div>
+          <div class="v">$1.1M-$3.6M</div>
+          <div class="s">A 3,000-member community at $60/mo = $2.16M ARR. That operator can absorb $9.6K/yr ($799/mo) of platform spend at 0.4% of revenue.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">Reachable US ICPs</div>
+          <div class="v">~9,000</div>
+          <div class="s">Bottom-up: paid founder networks, paid newsletter+events, hospitality circles, angel syndicates, alumni clubs, brand communities. <span class="assumption-tag">Model assumption</span></div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="margin-top:22px;">
         <table>
-          <thead><tr><th>Competitor</th><th>What they prove</th><th>What remains open</th></tr></thead>
+          <thead><tr><th>Competitor</th><th>What they prove</th><th>Where they leave the desk open</th><th>Public proof</th></tr></thead>
           <tbody>
             <tr>
-              <td><strong>Community.com</strong></td>
-              <td>SMS can be a premium owned-audience channel and a creator/brand relationship layer.</td>
-              <td>The product is perceived as celebrity/brand-scale and broadcast-heavy. The operator workflow for high-context communities is not the center.</td>
-            </tr>
-            <tr>
               <td><strong>Subtext</strong></td>
-              <td>Subtext reported 28M subscribers, 10B messages in 2025, 105% YoY revenue growth, and churn below 1%, validating paid texting infrastructure for media, brands, artists, and creators.</td>
-              <td>That is still audience messaging more than member graph operations, intro brokering, and community memory.</td>
+              <td>SMS works as a paid creator/media channel at unit economics that retain — 28M subs, 10B messages, 105% YoY rev growth, <1% churn in 2025.</td>
+              <td>Audience messaging, not member-graph operations. No intro brokering, no event memory, no concierge inbox per member.</td>
+              <td>S14</td>
             </tr>
             <tr>
-              <td><strong>SimpleTexting / Laylo</strong></td>
-              <td>They prove SMB texting, alerts, drops, and segmented messaging are accepted behaviors.</td>
-              <td>They do not own the private community operating system: member context, concierge replies, event memory, and intro workflow.</td>
+              <td><strong>Community.com</strong></td>
+              <td>Premium conversational SMS pricing works for celebrities and brands — contact-based pricing, premium positioning.</td>
+              <td>Branded as celeb/brand-scale, broadcast-shaped. The 1-operator-to-many-members concierge workflow is not the center of the product.</td>
+              <td>S15</td>
             </tr>
             <tr>
-              <td><strong>Discord / Circle / Geneva</strong></td>
-              <td>They prove community tooling demand, membership operations, and event/content workflows.</td>
-              <td>They rely on app-switching and feeds. For tastemaker communities, the feed itself is often the wrong interface.</td>
+              <td><strong>SimpleTexting / Laylo / EZ Texting</strong></td>
+              <td>SMB texting, drops, alerts, segments, opt-in flows — accepted SMB behavior.</td>
+              <td>None of them carry a member profile, an intro queue, a renewal signal, or a unified relationship desk. They are message senders, not relationship operators.</td>
+              <td>S15, S19</td>
+            </tr>
+            <tr>
+              <td><strong>Discord / Circle / Geneva / Skool / Mighty Networks</strong></td>
+              <td>Demand for community tooling is real — millions of paid communities globally, multiple $100M+ companies in the category.</td>
+              <td>All five bet on app-switching feeds and rooms. For paid premium communities where the operator-member 1:1 is the product, the feed is the wrong interface.</td>
+              <td>Public</td>
             </tr>
           </tbody>
         </table>
       </div>
+
       <div class="callout" style="margin-top:18px;">
-        <strong>Why nobody has built this exact midpoint:</strong> SMS companies optimize for campaigns and compliance; community platforms optimize for rooms, feeds, courses, and content. Threadline sits in between: a human-in-the-loop relationship desk where the phone inbox is the member interface and the dashboard is the operator brain.
+        <strong>What I want a buyer to say in 30 seconds:</strong> "I run a 2,400-person paid community. Half of them barely log into Circle. I've tried Discord — wrong audience. I tried Geneva — they ghost in groups. But all 2,400 read texts. I just need a desk where I can run intros, RSVPs, drops, and 1:1 reconnects from one screen with AI helping me draft. That's $799/mo? Done."
       </div>
     </div>
-    <div class="doc-footer"><span>Do not compete on blast SMS</span><span>Compete on operator memory</span></div>
+    <div class="doc-footer"><span>Wedge ≠ broadcast SMS</span><span>Wedge = relationship desk</span></div>
   </section>
 
+  <!-- ============== TAM SAM SOM ============== -->
   <section class="doc-page">
-    <div class="doc-header"><div class="label">03 · Product Surface</div><div class="label">MVP</div></div>
-    <h2 class="doc-title">The MVP is a concierge inbox with memory, not a full social network.</h2>
-    <div class="doc-body three-col">
-      <div class="score-card">
-        <div class="eyebrow">Member</div>
-        <h3 style="margin-top:12px;">Text-native interface</h3>
-        <p class="muted small">Opt-in keyword or invite link, two-way SMS, event RSVP by reply, content drops, polls, intro requests, preference capture.</p>
+    <div class="doc-header"><div class="label">03 · Market Sizing</div><div class="label">Bottom-up · sourced</div></div>
+    <h2 class="doc-title">$9.96B macro market. $400M serviceable. We need 0.07% of TAM to hit Y5.</h2>
+    <div class="doc-body">
+
+      <div class="three-col">
+        <div class="score-card">
+          <div class="eyebrow">TAM · 2030</div>
+          <h3 style="margin-top:12px;">$9.96B</h3>
+          <p class="muted small" style="margin-top:10px;">
+            US SMS marketing software, projected by Grand View Research (cited in EZ Texting 2026) [S19]. Global is materially larger. This is the macro tide. Threadline does not need to be the SMS marketing platform — it sits on its rails.
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="eyebrow">SAM · paid premium communities</div>
+          <h3 style="margin-top:12px;">$300M-$420M</h3>
+          <p class="muted small" style="margin-top:10px;">
+            Bottom-up: ~9,000 US paid premium communities at our ICP shape × $1,800/mo blended ACV ceiling × adoption = $194M floor / $972M ceiling. Realistic SAM at our pricing band: <strong>$300M-$420M ACV</strong>. <span class="assumption-tag">Model assumption</span>
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="eyebrow">SOM · Y5 capture</div>
+          <h3 style="margin-top:12px;">$27M ARR</h3>
+          <p class="muted small" style="margin-top:10px;">
+            ~1,460 paying communities at $1,540/mo blended ARPA. That is roughly 7-9% of the SAM low end, or 0.27% of the macro TAM. Aggressive for a 5-year category-defining play, but inside the achievable band given Subtext's growth profile [S14].
+          </p>
+        </div>
       </div>
-      <div class="score-card">
-        <div class="eyebrow">Operator</div>
-        <h3 style="margin-top:12px;">Slack-style command desk</h3>
-        <p class="muted small">Unified threads, priority queue, unread risk, segment filters, notes, member cards, event history, reminders, renewal signals.</p>
+
+      <div class="table-wrap" style="margin-top:22px;">
+        <table>
+          <thead><tr><th>Segment</th><th>US estimate</th><th>Threadline fit</th><th>Y5 capture target</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Paid founder + operator networks</strong></td><td>~600 (On Deck-style, peer cohorts, syndicate clubs)</td><td>High — paid 1:1 access is the product they sell.</td><td>180 customers</td></tr>
+            <tr><td><strong>Premium creator memberships (paid SMS-curious)</strong></td><td>~2,500 (paid Substack, Patreon T3, Beehiiv paid, paid YouTube memberships with events)</td><td>High — texting their list is already a workflow they want to monetize.</td><td>320 customers</td></tr>
+            <tr><td><strong>Paid newsletter + IRL events</strong></td><td>~1,200 (city dinner clubs, niche professional dinners, Cherub-style)</td><td>High — SMS is how RSVPs already happen, just over green-bubble chaos.</td><td>240 customers</td></tr>
+            <tr><td><strong>Boutique hospitality circles + private clubs</strong></td><td>~1,500 (founders' clubs, members-only restaurants, art clubs)</td><td>Medium — high willingness to pay but slower sales cycle.</td><td>180 customers</td></tr>
+            <tr><td><strong>Angel syndicates + scout networks</strong></td><td>~800</td><td>Medium-high — concierge intro brokering is exactly their workflow.</td><td>150 customers</td></tr>
+            <tr><td><strong>Alumni and curated cohort programs</strong></td><td>~1,800</td><td>Medium — multi-stakeholder buyer, slower close.</td><td>250 customers</td></tr>
+            <tr><td><strong>Brand and tastemaker communities</strong></td><td>~600 (DTC paid loyalty, fashion clubs, sneaker drops with paid tier)</td><td>Medium — best as Pro/Enterprise tier.</td><td>140 customers</td></tr>
+            <tr><td colspan="2"><strong>Total Y5 target</strong></td><td><strong>~$27M ARR</strong></td><td><strong>1,460 customers</strong></td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="score-card">
-        <div class="eyebrow">AI</div>
-        <h3 style="margin-top:12px;">Assist, not autopilot</h3>
-        <p class="muted small">Draft replies, tag intent, summarize history, suggest intros, flag compliance risk, route to operator. Human approval remains default.</p>
-      </div>
+
+      <p class="footnote">Segment counts derived bottom-up from public membership platforms (Skool, Circle, Mighty Networks, Memberful, Substack, Patreon, Hivebrite) and US private-club registry estimates. <span class="assumption-tag">Model assumption</span></p>
+
     </div>
+    <div class="doc-footer"><span>Y5 SOM is 0.27% of the SMS TAM</span><span>≠ TAM-slide thinking</span></div>
+  </section>
+
+  <!-- ============== MVP — PRODUCT SURFACE ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">04 · MVP Product Surface</div><div class="label">90 days · ship-or-don't list</div></div>
+    <h2 class="doc-title">A concierge desk with memory. Not a social network. Not a CRM.</h2>
     <div class="doc-body two-col">
       <div class="visual-panel">
-        <div class="panel-top"><span class="mono small">THREADLINE DESK</span><span class="status-dot"></span></div>
+        <div class="panel-top"><span class="mono small">THREADLINE DESK · DAILY VIEW</span><span class="status-dot"></span></div>
         <div class="panel-body">
           <div class="ui-grid">
             <div class="ui-list">
               <div class="ui-row"><span>Unread</span><span>42</span></div>
-              <div class="ui-row"><span>Intros</span><span>9</span></div>
-              <div class="ui-row"><span>RSVPs</span><span>317</span></div>
-              <div class="ui-row"><span>At risk</span><span>18</span></div>
+              <div class="ui-row"><span>Intro queue</span><span>9</span></div>
+              <div class="ui-row"><span>RSVPs · Tue</span><span>317 / 482</span></div>
+              <div class="ui-row"><span>At-risk renewals</span><span>18</span></div>
+              <div class="ui-row"><span>Today's COGS</span><span>$11.40</span></div>
+              <div class="ui-row"><span>Compliance clean</span><span>100%</span></div>
             </div>
             <div class="ui-main">
-              <div class="eyebrow">AI draft</div>
-              <h3 style="margin-top:10px;">"Can introduce you to Maya after Tuesday."</h3>
+              <div class="eyebrow">AI draft · approved by operator</div>
+              <h3 style="margin-top:10px;">"Can introduce you to Maya after Tuesday's dinner — she's running the same M&amp;A book."</h3>
+              <p class="muted small" style="margin-top:10px;">Confidence by lane:</p>
               <div class="bar"><span style="--w:91%"></span></div>
+              <p class="muted small">Reply quality · 91%</p>
               <div class="bar"><span style="--w:77%"></span></div>
+              <p class="muted small">Intent tag accuracy · 77%</p>
               <div class="bar"><span style="--w:58%"></span></div>
+              <p class="muted small">Auto-route safety · 58% (still operator-gated)</p>
             </div>
           </div>
         </div>
       </div>
       <div>
-        <h3>First 90 days</h3>
-        <p class="muted" style="margin-top:12px;">Ship SMS opt-in, unified inbox, member profile, event RSVP, AI draft replies, tags, intro-request queue, consent ledger, STOP handling, and cost dashboard. Skip feed, payments, courses, mobile app, and complex member directory until retention is proven.</p>
-        <div class="callout" style="margin-top:18px;"><strong>Hard line:</strong> every AI response remains approval-gated until a community proves the exact lanes where automation will not damage trust.</div>
+        <h3>What ships in 90 days</h3>
+        <p class="muted" style="margin-top:12px;">
+          <strong>Member-side:</strong> opt-in by keyword or invite link, 2-way SMS, event RSVP by reply, content drops, polls, intro requests, preference capture, STOP / quiet hours / TCPA receipts.
+        </p>
+        <p class="muted" style="margin-top:14px;">
+          <strong>Operator-side:</strong> unified threads, priority queue, member cards with full history, segment filters, notes, intro queue, RSVP tracker, renewal-risk signal, daily COGS dashboard, 10DLC compliance ledger.
+        </p>
+        <p class="muted" style="margin-top:14px;">
+          <strong>AI-side:</strong> draft replies (operator approves), intent tagging, conversation summary, intro suggestions from member graph, compliance flag (consent missing, quiet-hour breach, opt-out evasion).
+        </p>
+        <div class="callout" style="margin-top:18px;">
+          <strong>Not in MVP:</strong> public feed, mobile app, member-to-member chat, payments, courses, video, calendar sync, complex member directory. Each one is a trap that pulls scope into "social network."
+        </div>
       </div>
     </div>
-    <div class="doc-footer"><span>Build the operator desk first</span><span>Member app is a trap</span></div>
+    <div class="doc-footer"><span>Operator desk first</span><span>Member app would kill the wedge</span></div>
   </section>
 
+  <!-- ============== 90-DAY SPRINT PLAN ============== -->
   <section class="doc-page">
-    <div class="doc-header"><div class="label">04 · Economics</div><div class="label">Assay estimate</div></div>
-    <h2 class="doc-title">The unit economics work if pricing is tied to active members and message load.</h2>
+    <div class="doc-header"><div class="label">05 · 90-Day Sprint Plan</div><div class="label">How I'd actually build it</div></div>
+    <h2 class="doc-title">Six 2-week sprints. Pilot revenue in week 8. Gross-margin telemetry on day 1.</h2>
     <div class="doc-body">
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 1 · Weeks 1-2</div>
+        <h4>Twilio + Postgres + auth foundation. Single thread end-to-end.</h4>
+        <p>Provision Twilio Messaging Service + 10DLC brand registration + first campaign vetting (3-week lead time, kicks off Day 1). Stand up Next.js 16 + Vercel + Supabase Postgres + Supabase Auth (magic link). Wire one webhook: inbound SMS → message row → operator inbox view. STOP / HELP / quiet hours from day one — non-negotiable for compliance.</p>
+      </div>
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 2 · Weeks 3-4</div>
+        <h4>Member graph schema. Operator desk shell.</h4>
+        <p>Tables: <code>members</code>, <code>threads</code>, <code>messages</code>, <code>tags</code>, <code>events</code>, <code>rsvps</code>, <code>intros</code>, <code>consent_records</code>, <code>cogs_ledger</code>. Operator desk shell: unified inbox, member card with full history, tag editor, segment filters. RLS policies on every table from day one — service-role-only writes for billing and compliance.</p>
+      </div>
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 3 · Weeks 5-6</div>
+        <h4>AI draft + intent tagging. Approval-gated by default.</h4>
+        <p>Anthropic Claude Haiku 4.5 for drafts (cost target <$0.02 per draft). Pinecone or pgvector for member-context retrieval. Every AI output passes through an approve-edit-reject UI before send. Intent tagging runs async on every inbound message. Cost telemetry per customer in the admin pane — operators see daily SMS + AI spend.</p>
+      </div>
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 4 · Weeks 7-8</div>
+        <h4>Event RSVP, drops, intro queue. First 3 paid pilots.</h4>
+        <p>Event RSVP with reply-keyword grammar ("YES", "MAYBE", "NO + reason"). Drops = scheduled segmented broadcasts with included-credit accounting. Intro queue: operator pairs two members, AI drafts the warm intro, operator approves. <strong>First 3 paid pilots live by week 8 at $799/mo with white-glove import.</strong></p>
+      </div>
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 5 · Weeks 9-10</div>
+        <h4>Renewal-risk signal. Margin telemetry. Stripe billing.</h4>
+        <p>Renewal-risk score (last-text-recency × event no-show rate × thread-staleness). Stripe Billing for $799/$2,250/$5,500 tiers + usage overage billing on segments above bundle. Per-customer gross-margin dashboard for the operator-of-Threadline (us). Alert if any customer drops below 70% GM for 2 consecutive weeks.</p>
+      </div>
+
+      <div class="sprint-row">
+        <div class="wk">Sprint 6 · Weeks 11-12</div>
+        <h4>10 paid pilots live. Retention baseline. Kill-gate evaluation.</h4>
+        <p>Close 10 paid pilots. Run 30-day retention measurement: (a) operator weekly active &gt; 4× sessions/week, (b) member reply rate &gt; 18%, (c) usage-adjusted GM &gt; 75%. Below those bars on 4 of 10 = re-scope before raising. Above on 7+ of 10 = move to seed raise.</p>
+      </div>
+
+    </div>
+    <div class="doc-footer"><span>Compliance from Day 1</span><span>Margin telemetry from Day 1</span></div>
+  </section>
+
+  <!-- ============== UNIT ECONOMICS ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">06 · Per-Customer Unit Economics</div><div class="label">Hard math · Core tier</div></div>
+    <h2 class="doc-title">$799/mo Core tier · $572 contribution profit · 71.6% gross margin · 8-month CAC payback.</h2>
+    <div class="doc-body">
+
+      <div class="pl-grid">
+        <div class="score-card">
+          <h3 style="margin-bottom:14px;">Core tier · monthly P&amp;L per customer</h3>
+          <div class="pl-line"><span class="lbl">Subscription revenue</span><span class="val pos">+$799.00</span></div>
+          <div class="pl-line"><span class="lbl">Twilio segments (10K bundled @ $0.0083) [S12]</span><span class="val neg">-$83.00</span></div>
+          <div class="pl-line"><span class="lbl">Carrier fees + number rental [S12]</span><span class="val neg">-$15.00</span></div>
+          <div class="pl-line"><span class="lbl">10DLC pass-through (amortized) [S13]</span><span class="val neg">-$5.00</span></div>
+          <div class="pl-line"><span class="lbl">AI inference (Claude Haiku 4.5, ~25M tokens)</span><span class="val neg">-$20.00</span></div>
+          <div class="pl-line"><span class="lbl">Hosting · Postgres · storage · CDN</span><span class="val neg">-$40.00</span></div>
+          <div class="pl-line"><span class="lbl">Stripe processing (2.9% + $0.30)</span><span class="val neg">-$23.47</span></div>
+          <div class="pl-line"><span class="lbl">Support amortized (1 CSM / 50 customers)</span><span class="val neg">-$40.00</span></div>
+          <div class="pl-line total"><span class="lbl">Contribution profit</span><span class="val pos">$572.53</span></div>
+          <div class="pl-line total"><span class="lbl">Gross margin</span><span class="val pos">71.6%</span></div>
+        </div>
+        <div class="score-card">
+          <h3 style="margin-bottom:14px;">Pro tier · $2,250/mo · same COGS shape</h3>
+          <div class="pl-line"><span class="lbl">Subscription revenue</span><span class="val pos">+$2,250.00</span></div>
+          <div class="pl-line"><span class="lbl">Twilio segments (25K bundled)</span><span class="val neg">-$207.50</span></div>
+          <div class="pl-line"><span class="lbl">Carrier · 10DLC · dedicated number</span><span class="val neg">-$28.00</span></div>
+          <div class="pl-line"><span class="lbl">AI inference (premium context)</span><span class="val neg">-$45.00</span></div>
+          <div class="pl-line"><span class="lbl">Hosting + storage allocation</span><span class="val neg">-$55.00</span></div>
+          <div class="pl-line"><span class="lbl">Stripe processing</span><span class="val neg">-$65.55</span></div>
+          <div class="pl-line"><span class="lbl">Support (white-glove)</span><span class="val neg">-$80.00</span></div>
+          <div class="pl-line total"><span class="lbl">Contribution profit</span><span class="val pos">$1,768.95</span></div>
+          <div class="pl-line total"><span class="lbl">Gross margin</span><span class="val pos">78.6%</span></div>
+        </div>
+      </div>
+
+      <div class="num-strip" style="margin-top:18px;">
+        <div class="num-card">
+          <div class="k">Blended ARPA · Y5</div>
+          <div class="v">$1,540 / mo</div>
+          <div class="s">Mix: 55% Core, 30% Pro, 15% Enterprise. <span class="assumption-tag">Model</span></div>
+        </div>
+        <div class="num-card">
+          <div class="k">Blended gross margin · Y5</div>
+          <div class="v">78.4%</div>
+          <div class="s">Pro and Enterprise pull blended GM into the target band even with Core at 71.6%.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">CAC target</div>
+          <div class="v">$5,800</div>
+          <div class="s">Founder-led + content + warm-intro early. Paid pilots from existing community operators in Year 1.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">CAC payback</div>
+          <div class="v">8.0 mo</div>
+          <div class="s">$5,800 / ($1,540 × 0.78 × 0.6 sales-efficiency factor) ≈ 8 months. Standard SMB SaaS healthy band.</div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:18px;">
+        <strong>The honest read on margin:</strong> Core at $799 lands at 71.6% GM, below the 78% target. The blend hits 78%+ only because Pro and Enterprise carry the same fixed COGS shape on 3-7× the revenue. <strong>Implication: Core is an acquisition tier, not a long-term home.</strong> Land at $799, expand to Pro within 6 months via usage and feature gates. If 40%+ of cohort fails to expand within 9 months, the price ladder is broken — re-cut Core to $999 or compress its included-credit bundle.
+      </div>
+
+      <p class="footnote">Anthropic Claude Haiku 4.5 list pricing as of Apr 2026: $1.00 / 1M input tokens, $5.00 / 1M output tokens. Token estimate: 5,000 members × 5 AI calls/mo × ~800 input + 200 output tokens ≈ 25M total tokens/mo at ~80/20 in/out blend ≈ $20/mo. Claude API as of late 2025 supports 1M context, prompt caching at 90% discount on cached tokens — at scale the figure trends down to ~$12/mo per customer.</p>
+
+    </div>
+    <div class="doc-footer"><span>Core is a wedge, not a home</span><span>Real margin lives at Pro+</span></div>
+  </section>
+
+  <!-- ============== 5-YEAR ARR MODEL ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">07 · 5-Year ARR Build</div><div class="label">Cohort math · explicit assumptions</div></div>
+    <h2 class="doc-title">$0 → $27M ARR in 60 months. 110% NRR. 18% logo churn dropping to 10% by Y3.</h2>
+    <div class="doc-body">
+
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Plan</th><th>Price</th><th>Fit</th><th>Required guardrail</th></tr></thead>
+          <thead><tr>
+            <th>Year</th>
+            <th>Net new logos</th>
+            <th>Total logos (EOY)</th>
+            <th>ARPA blend (EOY)</th>
+            <th>Exit ARR</th>
+            <th>NRR</th>
+            <th>Logo churn</th>
+            <th>Headcount</th>
+          </tr></thead>
           <tbody>
-            <tr><td><strong>Starter</strong></td><td>$299/month + usage</td><td>500-1,000 member groups testing SMS operations.</td><td>Hard message caps and one operator seat.</td></tr>
-            <tr><td><strong>Core</strong></td><td>$799/month + usage</td><td>1,000-5,000 member communities with events and intro flow.</td><td>Usage pass-through above included credits.</td></tr>
-            <tr><td><strong>Pro</strong></td><td>$1,500-$3,000/month</td><td>Paid memberships, curated clubs, founder networks, brand communities.</td><td>Dedicated number, consent reviews, advanced AI context.</td></tr>
-            <tr><td><strong>Enterprise</strong></td><td>$5K+/month</td><td>Multi-community operators, brand portfolios, agencies, hospitality groups.</td><td>Contracted message volume and compliance onboarding.</td></tr>
+            <tr><td><strong>Y1</strong></td><td>30</td><td>30</td><td>$1,200</td><td>$432K</td><td>n/a</td><td>~22% (early)</td><td>4 FTE</td></tr>
+            <tr><td><strong>Y2</strong></td><td>120</td><td>140</td><td>$1,350</td><td>$2.27M</td><td>108%</td><td>18%</td><td>9 FTE</td></tr>
+            <tr><td><strong>Y3</strong></td><td>250</td><td>360</td><td>$1,440</td><td>$6.22M</td><td>112%</td><td>14%</td><td>17 FTE</td></tr>
+            <tr><td><strong>Y4</strong></td><td>420</td><td>720</td><td>$1,490</td><td>$12.87M</td><td>112%</td><td>11%</td><td>28 FTE</td></tr>
+            <tr><td><strong>Y5</strong></td><td>620</td><td>1,210</td><td>$1,540</td><td>$22.36M</td><td>110%</td><td>10%</td><td>42 FTE</td></tr>
+            <tr><td><strong>Y5 + NRR uplift</strong></td><td colspan="3" style="text-align:right;color:var(--muted)">Plus existing-base expansion through 110% NRR</td><td><strong>$27.0M</strong></td><td colspan="3"></td></tr>
           </tbody>
         </table>
       </div>
+
       <div class="two-col" style="margin-top:18px;">
-        <div class="callout"><strong>Gross margin read:</strong> Twilio US long-code SMS starts at $0.0083 per inbound/outbound segment before carrier fees. A 5,000-member community at 3-5 messages/member/month needs usage pricing or included-message ceilings.</div>
-        <div class="callout"><strong>Value band:</strong> $25M-$75M if Threadline reaches $3M-$8M ARR with healthy SMB churn; $150M-$250M if it becomes the operating layer for premium communities and creator-owned membership networks.</div>
+        <div class="callout">
+          <strong>Why the curve looks like that:</strong> Y1 is founder-led pilots and warm intros. Y2 is the first paid GTM motion (content + partnerships with paid-newsletter operators). Y3 is when CAC drops because referenceable customers carry inbound. Y4-Y5 is when Pro/Enterprise mix kicks in and ARPA expands without proportional CAC increase.
+        </div>
+        <div class="callout">
+          <strong>Valuation read:</strong> $27M ARR × 8-12× ARR multiple (premium SaaS, 78% GM, 110% NRR, AI-leveraged) = <strong>$216M-$324M enterprise value</strong>. Maps to the "$150M-$250M upside" band in the original deck and slightly above. Realistic <strong>$25M-$75M floor</strong> stays valid if growth slows post-Y3 or NRR compresses.
+        </div>
       </div>
+
+      <p class="footnote">Y1 ARR is exit-rate, not revenue. Y1 GAAP revenue assuming mid-year ramp ≈ $215K. Headcount derived bottom-up: founder + 1 eng + 1 design/PM + 1 CSM in Y1; +eng, +CSM, +AE in Y2; +eng, +AE, +marketing, +ops in Y3.</p>
+
     </div>
-    <div class="doc-footer"><span>Usage pricing is not optional</span><span>SMS gross margin target: 78%+</span></div>
+    <div class="doc-footer"><span>NRR is the real lever</span><span>Logo churn under 12% by Y3 is the gate</span></div>
   </section>
 
+  <!-- ============== GTM ============== -->
   <section class="doc-page">
-    <div class="doc-header"><div class="label">05 · Risks</div><div class="label">Kill Gates</div></div>
-    <h2 class="doc-title">The risk is not that texting is dead. The risk is messy operations.</h2>
+    <div class="doc-header"><div class="label">08 · GTM</div><div class="label">First 100 named accounts · 3 channels</div></div>
+    <h2 class="doc-title">Founder-led for the first 30. Content + paid-newsletter swap for 30-100. AE motion after.</h2>
     <div class="doc-body">
-      <div class="table-wrap">
+
+      <div class="three-col">
+        <div class="score-card">
+          <div class="eyebrow">Channel 01 · Founder direct (Y1, customers 1-30)</div>
+          <h3 style="margin-top:12px;">Warm intros to paid-community operators we already know.</h3>
+          <p class="muted small" style="margin-top:10px;">
+            Target list: founder-network operators (On Deck, Reforge alums, Lenny's, South Park Commons), paid-newsletter operators (Workweek, Creator Economy Report, Every), private dinner-club organizers, angel-syndicate leads. CAC = ~$0 (founder time). Conversion target: 30 paid pilots from 80 conversations = 38%.
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="eyebrow">Channel 02 · Content + reciprocal SMS swap (Y1-Y2, 30-200)</div>
+          <h3 style="margin-top:12px;">Paid newsletters' lists become Threadline's distribution.</h3>
+          <p class="muted small" style="margin-top:10px;">
+            Build a thin operator-tier publication: "Concierge desks: how 5 community operators run 3,000+ members from one inbox." Each issue is reciprocal — featured operators send to their list, we send to ours. Compounds. CAC target: $4,000 per paid pilot, payback in 7-9 months.
+          </p>
+        </div>
+        <div class="score-card">
+          <div class="eyebrow">Channel 03 · AE-driven outbound (Y2+, 200+)</div>
+          <h3 style="margin-top:12px;">Outbound to brand and tastemaker communities (Pro/Enterprise tier).</h3>
+          <p class="muted small" style="margin-top:10px;">
+            Target list: DTC paid loyalty programs, fashion houses with tier-3 memberships, boutique hospitality groups, alumni programs at top US business schools. ACV $2.2K-$5.5K/mo. CAC $9-12K. Payback 12-15 months. AE quotas: 4 closed-won/quarter at full ramp.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:22px;">
+        <strong>What I refuse to do in GTM:</strong> Google Ads on "community management software" — overpriced, wrong intent. Generic LinkedIn outbound — community operators do not respond to it. Paid podcast sponsorships before $1M ARR — unmeasurable at our stage. Free tier — destroys the operator-pays-for-leverage positioning. Self-serve before $5M ARR — the white-glove import is part of why pilots stick.
+      </div>
+
+      <h3 style="margin-top:28px;">First 20 named-account archetypes (illustrative, not yet contacted)</h3>
+      <div class="table-wrap" style="margin-top:14px;">
         <table>
-          <thead><tr><th>Risk</th><th>Severity</th><th>What it means</th><th>Mitigation</th></tr></thead>
+          <thead><tr><th>Archetype</th><th>Tier · ACV</th><th>Why they convert</th></tr></thead>
           <tbody>
-            <tr><td><strong>10DLC and TCPA burden</strong></td><td class="risk-high">High</td><td>Every customer needs compliant opt-in, opt-out, sender registration, campaign approval, message examples, and consent records.</td><td>Make compliance part of onboarding; provide preflight checks, consent capture, STOP handling, quiet hours, and audit logs.</td></tr>
-            <tr><td><strong>SMS COGS</strong></td><td class="risk-high">High</td><td>Heavy conversational use can erase margin if Threadline prices like flat SaaS.</td><td>Included credits, overage pricing, AI summarization to reduce back-and-forth, and margin telemetry in the admin.</td></tr>
-            <tr><td><strong>Operator burnout</strong></td><td class="risk-med">Medium</td><td>The buyer already has too many dashboards. If the console adds work, churn follows.</td><td>Threadline must collapse work into queues, suggested actions, and daily operator rituals, not just expose another inbox.</td></tr>
-            <tr><td><strong>Platform shift to RCS/iMessage</strong></td><td class="risk-med">Medium</td><td>Apple RCS support and business messaging APIs can change member expectations around rich messaging.</td><td>Build a messaging abstraction early. SMS is the starting interface, not the whole channel architecture forever.</td></tr>
+            <tr><td>Paid founder cohort (300-800 alums)</td><td>Core · $9.6K/yr</td><td>Cohort runs intros for revenue. Currently scrambling on Telegram/Slack. Threadline is intro queue + memory.</td></tr>
+            <tr><td>Premium creator membership (paid SMS-curious, 2K members)</td><td>Pro · $27K/yr</td><td>Already monetizing texts to a lower-priced list. We move them up-market.</td></tr>
+            <tr><td>City dinner club (1.2K members, 12 events/yr)</td><td>Core · $9.6K/yr</td><td>RSVP chaos. Reply-by-text RSVP is exactly the workflow.</td></tr>
+            <tr><td>Angel syndicate (400 LPs)</td><td>Pro · $27K/yr</td><td>Concierge intro brokering between LPs and portfolio founders. AI-suggested + human-approved lands here perfectly.</td></tr>
+            <tr><td>Boutique hospitality (private members' restaurant, 800 members)</td><td>Pro · $27K/yr</td><td>Reservations + member preference memory. Dedicated number.</td></tr>
+            <tr><td>Alumni program (top US MBA, 4K active)</td><td>Enterprise · $66K/yr</td><td>Multi-cohort intros, event RSVPs, fundraising signals. Slow close, big seat.</td></tr>
+            <tr><td>DTC paid loyalty tier (5K members at $50/mo)</td><td>Enterprise · $66K/yr</td><td>Drops, paid early access, replenishment SMS, member memory at scale.</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="callout" style="margin-top:18px;"><strong>Kill gate:</strong> if 10 paid communities do not keep using the operator desk after 30 days, or if usage-adjusted gross margin cannot stay above 78%, stop. Do not hide bad unit economics under "engagement."</div>
+
     </div>
-    <div class="doc-footer"><span>Verdict: build first</span><span>Prove retention before automation</span></div>
+    <div class="doc-footer"><span>Founder-led for 12 months</span><span>Don't paid-acquire too early</span></div>
   </section>
 
+  <!-- ============== DEFENSIBILITY ============== -->
   <section class="doc-page">
-    <div class="doc-header"><div class="label">06 · Sources</div><div class="label">Threadline</div></div>
+    <div class="doc-header"><div class="label">09 · Defensibility</div><div class="label">Moat thesis</div></div>
+    <h2 class="doc-title">The moat isn't AI. It's the relationship graph + workflow lock-in + compliance posture.</h2>
+    <div class="doc-body three-col">
+      <div class="score-card">
+        <div class="eyebrow">Moat 01 · Relationship graph</div>
+        <h3 style="margin-top:12px;">Member memory the operator can't recreate elsewhere.</h3>
+        <p class="muted small" style="margin-top:10px;">After 6 months on Threadline, an operator has 1,000+ tagged conversations, 200+ documented intros, 50+ event RSVP histories per member, and renewal-risk signals tied to behavior. Migrating that to a competitor means rebuilding 6-12 months of context. Switching cost is real, not theoretical.</p>
+      </div>
+      <div class="score-card">
+        <div class="eyebrow">Moat 02 · Workflow lock-in</div>
+        <h3 style="margin-top:12px;">The operator's daily ritual runs on this desk.</h3>
+        <p class="muted small" style="margin-top:10px;">If the morning routine is: open Threadline, work the priority queue, approve 12 AI drafts, fire 4 intros, check renewal risk — that ritual replaces what a CSM team used to do. Replacing the desk means replacing the job. Operators don't switch unless something breaks.</p>
+      </div>
+      <div class="score-card">
+        <div class="eyebrow">Moat 03 · Compliance posture</div>
+        <h3 style="margin-top:12px;">10DLC + TCPA done right is a barrier, not a checkbox.</h3>
+        <p class="muted small" style="margin-top:10px;">A new entrant has to register a brand, pass campaign vetting (3-6 weeks), implement consent ledger + STOP / quiet hours, and survive their first TCPA letter. Threadline does this on every customer onboarding by default. New entrants who skip it ship faster — and discover compliance debt at the worst time [S13][S17].</p>
+      </div>
+    </div>
+    <div class="doc-body">
+      <div class="callout">
+        <strong>Anti-moat reality check:</strong> the AI inference itself is not defensible — Anthropic, OpenAI, Google all sell the same cognitive capacity. The product moat is what surrounds the AI: the data shape, the workflow ritual, the compliance ledger, the operator trust. Any "AI for community" pitch that leans on the model as the moat is going to lose to the team that owns the workflow.
+      </div>
+    </div>
+    <div class="doc-footer"><span>AI is fuel</span><span>Workflow + memory + compliance is the moat</span></div>
+  </section>
+
+  <!-- ============== TECH ARCHITECTURE + TEAM ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">10 · Architecture · Team · Burn</div><div class="label">How I'd actually staff and run it</div></div>
+    <h2 class="doc-title">4 FTE Y1 → 42 FTE Y5. $1.4M pre-seed → $8M seed → Series A on $7M ARR.</h2>
+    <div class="doc-body two-col">
+      <div>
+        <h3>Stack</h3>
+        <p class="muted" style="margin-top:12px;"><strong>Frontend:</strong> Next.js 16 App Router on Vercel. Tailwind for ops desk. shadcn/ui for component library. Server Components for the operator dashboard, Server Actions for write paths. Cache Components for read-heavy member pages.</p>
+        <p class="muted" style="margin-top:12px;"><strong>Backend:</strong> Supabase Postgres (RLS-first, service-role boundary clean). Edge Functions for SMS webhooks. pgvector for member-context retrieval. Stripe Billing for subscriptions + metered usage.</p>
+        <p class="muted" style="margin-top:12px;"><strong>SMS:</strong> Twilio Messaging Service with 10DLC brand + campaign per customer where possible, shared brand for SMB tier. Carrier-aware retry. Queue with backpressure during quiet hours.</p>
+        <p class="muted" style="margin-top:12px;"><strong>AI:</strong> Anthropic Claude Haiku 4.5 for drafts and intent tagging. Claude Sonnet 4.6 for high-stakes summarization. Prompt caching at 90% discount on stable system prompts. Eval harness from week 1.</p>
+        <p class="muted" style="margin-top:12px;"><strong>Observability:</strong> Vercel Analytics, Sentry, custom COGS pipeline (per-customer SMS + AI cost rollup, surfaced in admin and to operators). Posthog for product analytics.</p>
+      </div>
+      <div>
+        <h3>Team plan</h3>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>Yr</th><th>Roles</th><th>Burn / mo</th></tr></thead>
+            <tbody>
+              <tr><td>Y1</td><td>Founder/CEO · Founding Eng · PM/Design · CSM</td><td>~$58K</td></tr>
+              <tr><td>Y2</td><td>+2 Eng · +1 CSM · +1 AE · +Marketing lead</td><td>~$165K</td></tr>
+              <tr><td>Y3</td><td>+3 Eng · +2 AE · +CSM lead · +Ops · +AI/ML eng</td><td>~$295K</td></tr>
+              <tr><td>Y4</td><td>+4 Eng · +3 AE · +VP Eng · +VP Sales · +HR</td><td>~$520K</td></tr>
+              <tr><td>Y5</td><td>+5 Eng · +4 GTM · +VP Marketing · +exec round</td><td>~$795K</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">Burn assumes blended fully-loaded $145K-$185K per FTE plus 18% G&amp;A overhead. <span class="assumption-tag">Model</span></p>
+      </div>
+    </div>
+    <div class="doc-body">
+      <div class="callout">
+        <strong>What I would not do at the architecture layer:</strong> own a custom SMS gateway (Twilio earns the carrier-relationship rent for a reason). Build a mobile app before $5M ARR (the phone IS the app). Self-host Postgres before $20M ARR (Supabase RLS + service-role discipline carries us). Train a custom model (Anthropic + OpenAI eval ladder is faster, cheaper, and beats homegrown until at least $50M ARR).
+      </div>
+    </div>
+    <div class="doc-footer"><span>Boring stack on purpose</span><span>Compliance + cost telemetry from day 1</span></div>
+  </section>
+
+  <!-- ============== RISKS + KILL GATES ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">11 · Risks + Kill Gates</div><div class="label">Quantified · pre-committed</div></div>
+    <h2 class="doc-title">Four risks. Four numeric kill gates. No post-hoc rationalization.</h2>
+    <div class="doc-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Risk</th><th>Severity</th><th>Quantified gate</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>10DLC + TCPA compliance burden</strong></td>
+              <td class="risk-high">High</td>
+              <td>Kill if any customer triggers a TCPA legal letter inside Y1 due to product gap (vs operator misuse).</td>
+              <td>Compliance is part of onboarding. Preflight checks, consent capture, STOP / HELP, quiet hours, audit logs. No customer activates without 10DLC brand+campaign approved [S13][S17].</td>
+            </tr>
+            <tr>
+              <td><strong>SMS COGS erodes margin</strong></td>
+              <td class="risk-high">High</td>
+              <td>Kill or repricing if blended GM &lt; 72% for two consecutive quarters with usage pricing live.</td>
+              <td>Per-customer COGS dashboard from week 1. Included-credit ceilings + automatic overage billing. AI summarization to reduce thread length. Twilio volume discount once monthly spend &gt; $50K [S12].</td>
+            </tr>
+            <tr>
+              <td><strong>Operator burnout / desk abandonment</strong></td>
+              <td class="risk-med">Medium</td>
+              <td>Kill or pivot if &lt; 4 of first 10 paid pilots maintain 4× weekly desk sessions at day-30.</td>
+              <td>Daily ritual primitives: priority queue, suggested actions, end-of-day digest. AI draft adoption telemetry per operator. Onboarding playbook tied to a 1-week ramp.</td>
+            </tr>
+            <tr>
+              <td><strong>RCS / iMessage shift</strong></td>
+              <td class="risk-med">Medium</td>
+              <td>Trigger: if &gt; 30% of inbound is RCS by end Y2, abstract messaging layer becomes mandatory.</td>
+              <td>Build messaging-channel abstraction by Y2 sprint planning. SMS is the first channel, not the only one. Apple Messages for Business path opens optional [S16][S18].</td>
+            </tr>
+            <tr>
+              <td><strong>Competitor (Subtext, Community.com) re-aims at desk</strong></td>
+              <td class="risk-med">Medium</td>
+              <td>Trigger: if Community.com or Subtext ships an "operator console" with intro queue + member memory before our Y2 close.</td>
+              <td>Speed to brand among paid premium communities is the defense. Reference accounts in 3-4 named segments by month 18. Compliance posture as deflection ("we already passed brand vetting on 80 customers").</td>
+            </tr>
+            <tr>
+              <td><strong>AI cost inflation</strong></td>
+              <td class="risk-low">Low</td>
+              <td>Trigger: if blended AI cost / customer &gt; $40/mo at Pro tier.</td>
+              <td>Prompt caching, model-ladder routing (Haiku → Sonnet only when needed), quarterly model refresh. Anthropic pricing has been monotonically falling — base case is downside.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top:18px;">
+        <strong>Kill gate philosophy:</strong> these are pre-committed numeric tests, not vibes. If 4 of 10 paid pilots don't hit weekly active by day 30, that is the signal — not "the cohort had bad PMF, but the next one will." If GM stays below 72% for two quarters, the price ladder is broken — do not paper over it with growth narrative.
+      </div>
+    </div>
+    <div class="doc-footer"><span>Numeric gates · pre-committed</span><span>Don't rationalize past them</span></div>
+  </section>
+
+  <!-- ============== FUNDING ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">12 · Funding Plan</div><div class="label">Pre-seed · Seed · Series A</div></div>
+    <h2 class="doc-title">$1.4M pre-seed buys 18 months and 10-20 paid pilots. Seed at $432K ARR. A at $7M ARR.</h2>
+    <div class="doc-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Round</th>
+            <th>Amount</th>
+            <th>Triggers raise</th>
+            <th>Burn covered</th>
+            <th>Milestones to next round</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pre-seed</strong></td>
+              <td>$1.4M on $8-10M post</td>
+              <td>Now (4 FTE, 12-18 month runway)</td>
+              <td>~18 months at $58K/mo + buffer</td>
+              <td>30 paid logos, $432K ARR, 70%+ blended GM, &lt;20% logo churn, 3 named segments with reference accounts.</td>
+            </tr>
+            <tr>
+              <td><strong>Seed</strong></td>
+              <td>$5-8M on $30-45M post</td>
+              <td>End of Y1 / early Y2</td>
+              <td>~18 months at $165K/mo</td>
+              <td>$2.2M ARR, 110% NRR, 78% blended GM, 2 enterprise references, repeatable 3-channel GTM, AE motion warm.</td>
+            </tr>
+            <tr>
+              <td><strong>Series A</strong></td>
+              <td>$15-25M on $100-150M post</td>
+              <td>Mid-Y3</td>
+              <td>~24 months at $295K/mo</td>
+              <td>$7M ARR, 112% NRR, 78%+ GM, 3× year-over-year growth, 17 FTE, RCS/iMessage abstraction proven.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="num-strip" style="margin-top:18px;">
+        <div class="num-card">
+          <div class="k">Pre-seed use of funds</div>
+          <div class="v">62% eng · 18% GTM · 12% ops · 8% legal/compliance</div>
+          <div class="s">Compliance / legal is non-trivial — 10DLC + TCPA counsel from day 1.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">Founder dilution by Series A</div>
+          <div class="v">~38-44%</div>
+          <div class="s">Standard band for $25M raised across 3 rounds with 12% option pool refresh. <span class="assumption-tag">Model</span></div>
+        </div>
+        <div class="num-card">
+          <div class="k">Cash to break-even</div>
+          <div class="v">~$28-34M total</div>
+          <div class="s">Conservative; AI-leveraged GM and 110% NRR can pull this lower if Y4 efficiency holds.</div>
+        </div>
+        <div class="num-card">
+          <div class="k">Exit scenarios</div>
+          <div class="v">$216M-$324M Y5</div>
+          <div class="s">8-12× ARR multiple on $27M ARR with premium-SaaS profile. Floor $25M-$75M if growth slows.</div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:18px;">
+        <strong>Why this raises clean:</strong> the company sells SaaS unit economics (78% GM, 110% NRR), the wedge is legible in 30 seconds (paid-community operator desk over SMS), the buyer can be named (founder networks, paid newsletters, dinner clubs, syndicates), and the AI leverage story is honest (4-6× operator throughput, model is fuel not moat). What kills SMS investments — broadcast-only economics, weak retention, regulatory exposure — Threadline answers explicitly with usage pricing, workflow lock-in, and compliance-by-default.
+      </div>
+
+    </div>
+    <div class="doc-footer"><span>Pre-seed = $432K ARR proof</span><span>Seed = $2.2M ARR + repeatable GTM</span></div>
+  </section>
+
+  <!-- ============== SOURCES ============== -->
+  <section class="doc-page">
+    <div class="doc-header"><div class="label">13 · Sources + Model Notes</div><div class="label">Threadline build case</div></div>
     <h2 class="doc-title">Source notes</h2>
     <div class="doc-body source-list">
-      <div class="source">S12 Twilio US SMS pricing: <a href="https://www.twilio.com/en-us/sms/pricing/us">twilio.com/en-us/sms/pricing/us</a></div>
-      <div class="source">S13 Twilio A2P 10DLC: <a href="https://www.twilio.com/en-us/phone-numbers/a2p-10dlc">twilio.com/en-us/phone-numbers/a2p-10dlc</a></div>
-      <div class="source">S14 Subtext 2026 announcement: <a href="https://www.globenewswire.com/news-release/2026/03/25/3262208/0/en/subtext-surpasses-28-million-subscribers-and-10-billion-messages-in-2025-achieves-105-revenue-growth-yoy.html">globenewswire.com/Subtext</a></div>
-      <div class="source">S15 Community.com SMS explainer: <a href="https://community.com/blog/what-is-sms-marketing">community.com/blog/what-is-sms-marketing</a></div>
-      <div class="source">S16 Apple Messages for Business guide: <a href="https://www.zendesk.com/service/messaging/apple-messages-for-business/">zendesk.com/service/messaging/apple-messages-for-business</a></div>
-      <div class="source">S18 Messente RCS Business Messaging 2026 update: <a href="https://messente.com/blog/state-of-rcs-business-messaging">messente.com/blog/state-of-rcs-business-messaging</a></div>
-      <div class="source">S19 EZ Texting SMS statistics 2026: <a href="https://www.eztexting.com/resources/sms-marketing-statistics">eztexting.com/resources/sms-marketing-statistics</a></div>
+      <div class="source">S12 Twilio US SMS pricing (long-code $0.0083/segment): <a href="https://www.twilio.com/en-us/sms/pricing/us">twilio.com/en-us/sms/pricing/us</a></div>
+      <div class="source">S13 Twilio A2P 10DLC compliance + brand/campaign vetting: <a href="https://www.twilio.com/en-us/phone-numbers/a2p-10dlc">twilio.com/en-us/phone-numbers/a2p-10dlc</a></div>
+      <div class="source">S14 Subtext 2026 announcement (28M subs, 10B msgs, 105% YoY, &lt;1% churn): <a href="https://www.globenewswire.com/news-release/2026/03/25/3262208/0/en/subtext-surpasses-28-million-subscribers-and-10-billion-messages-in-2025-achieves-105-revenue-growth-yoy.html">globenewswire.com / Subtext</a></div>
+      <div class="source">S15 Community.com SMS marketing positioning + pricing model: <a href="https://community.com/blog/what-is-sms-marketing">community.com/blog/what-is-sms-marketing</a></div>
+      <div class="source">S16 Apple Messages for Business platform overview: <a href="https://www.zendesk.com/service/messaging/apple-messages-for-business/">zendesk.com / Apple Messages for Business</a></div>
+      <div class="source">S17 USA SMS compliance guidelines (TCPA, CTIA, 10DLC, TCR registration): <a href="https://www.messagecentral.com/sms-guideline/usa">messagecentral.com / sms-guideline / usa</a></div>
+      <div class="source">S18 RCS Business Messaging 2026 update: <a href="https://messente.com/blog/state-of-rcs-business-messaging">messente.com / state-of-rcs-business-messaging</a></div>
+      <div class="source">S19 EZ Texting SMS statistics 2026 ($2.86B 2023 → $9.96B 2030 projected): <a href="https://www.eztexting.com/resources/sms-marketing-statistics">eztexting.com / sms-marketing-statistics</a></div>
+
+      <h3 style="margin-top:24px;">Model assumptions (clearly labeled across the deck)</h3>
+      <p class="muted small" style="margin-top:10px;">
+        ARPA mix (55% Core / 30% Pro / 15% Enterprise by Y5), CAC band ($5,800 blended Y2), AI cost per customer ($20 Core, $45 Pro), CSM ratio (1:50 Core, 1:25 Pro), NRR ramp (108% → 112% over 5 years), logo churn ramp (22% → 10% over 5 years), bottom-up segment counts (~9,000 US paid premium communities), exit multiple (8-12× ARR on premium-SaaS profile).
+      </p>
+      <p class="muted small" style="margin-top:14px;">
+        Anthropic pricing as of Apr 2026 for Haiku 4.5: $1.00/M input, $5.00/M output, 90% discount on cached prompts. Twilio long-code as of S12. SMS market projection from Grand View via S19. Subtext public metrics from S14. Bottom-up community counts derived from Skool (190K+ communities, est. 5% paid premium), Circle (50K+ communities), Mighty Networks (50K+), Patreon (250K+ creators, est. 1% premium SMS-curious), Substack (35M+ subs, est. ~5K paid creators with paid SMS-shaped offers).
+      </p>
     </div>
-    <div class="doc-footer"><span>Evidence pulled April 25 2026</span><span>Back to hub</span></div>
+    <div class="doc-footer"><span>Build case generated April 25 2026</span><span>Updated with full unit econ + funding plan</span></div>
   </section>
+
 </main>
 </body>
 </html>
