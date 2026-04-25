@@ -354,7 +354,7 @@ p {
 
 .deck-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 18px;
 }
 
@@ -630,6 +630,18 @@ td strong {
   --accent: #e0b85a;
   --accent-2: #74d6c7;
   --accent-3: #ff7e67;
+}
+
+.brand-nbc {
+  --page: #0a0708;
+  --surface: #161012;
+  --surface-2: #1f1719;
+  --surface-3: #2c2225;
+  --text: #f7eedc;
+  --muted: #b8a9a3;
+  --accent: #b54848;
+  --accent-2: #d4af6a;
+  --accent-3: #6e8a76;
 }
 
 .small {
