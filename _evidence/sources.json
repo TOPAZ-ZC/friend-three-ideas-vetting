@@ -1,0 +1,120 @@
+{
+  "pulled_at": "2026-04-25",
+  "notes": "Evidence gathered for the three-idea comparative HTML packet. Market and pricing claims in the decks are dated and linked back to these sources where possible.",
+  "sources": [
+    {
+      "id": "S1",
+      "name": "Unity Asset Manager product page",
+      "url": "https://unity.com/products/asset-manager",
+      "used_for": "3D asset management feature benchmark: RBAC, APIs, SDKs, Unity Version Control integration, VPC option, 3D previews, FBX/OBJ/AutoCAD/glTF support."
+    },
+    {
+      "id": "S2",
+      "name": "Unity 2026 pricing changes",
+      "url": "https://unity.com/products/pricing-updates",
+      "used_for": "Unity DevOps/Asset Manager storage and egress packaging context."
+    },
+    {
+      "id": "S3",
+      "name": "VNTANA 3D Digital Asset Management",
+      "url": "https://www.vntana.com/solutions/3d-digital-asset-management/",
+      "used_for": "3D/CAD DAM competitive benchmark: CAD optimization, PLM/PIM/DAM/eCommerce connections, sales and aftermarket portals, role-based permissions, versioning."
+    },
+    {
+      "id": "S4",
+      "name": "HOOPS Exchange Documentation",
+      "url": "https://docs.techsoft3d.com/hoops/exchange/",
+      "used_for": "CAD import/export SDK capability benchmark: exact geometry, model tree, metadata, CATIA/NX/Creo/SOLIDWORKS/Inventor/Solid Edge/JT/STEP/STL/IGES/Revit/IFC/DWG."
+    },
+    {
+      "id": "S5",
+      "name": "Open CASCADE Technology FAQ",
+      "url": "https://dev.opencascade.org/resources/faq",
+      "used_for": "MVP CAD kernel option: commercial applications can use OCCT without development license fees, runtime fees, or royalties, subject to LGPL obligations."
+    },
+    {
+      "id": "S6",
+      "name": "Digital Asset Management market report",
+      "url": "https://www.globalgrowthinsights.com/market-reports/digital-asset-management-dam-software-market-121725",
+      "used_for": "2026 DAM market sizing by application, including manufacturing at approximately $0.95B and global DAM software at approximately $4.77B."
+    },
+    {
+      "id": "S7",
+      "name": "Bizzabo pricing",
+      "url": "https://www.bizzabo.com/pricing",
+      "used_for": "Event platform pricing and sponsor portal benchmark: Event Experience OS starts at $17,999 per year, sponsor portal listed as premium add-on."
+    },
+    {
+      "id": "S8",
+      "name": "Luma pricing",
+      "url": "https://luma.com/pricing",
+      "used_for": "RSVP/ticketing price anchor: free unlimited events/guests, Luma Plus $59/month annually, 5% platform fee on paid free plan, invite send add-ons."
+    },
+    {
+      "id": "S9",
+      "name": "Partiful help center pricing",
+      "url": "https://help.partiful.com/hc/en-us/articles/27354376389403-Does-Partiful-cost-money",
+      "used_for": "Consumer/social event invite benchmark: core platform free, ticketing fee in beta."
+    },
+    {
+      "id": "S10",
+      "name": "Splash pricing",
+      "url": "https://splashthat.com/pricing",
+      "used_for": "Event marketing platform benchmark: enterprise-style license roles, CRM sync, badge printing, brand management, custom templates."
+    },
+    {
+      "id": "S11",
+      "name": "PQ Media experiential marketing forecast press release",
+      "url": "https://www.pqmedia.com/wp-content/uploads/2024/10/Global-Experiential-Marketing-Forecast-2024-2028-FINAL-PRW-RELEASE-Deployed-on-10.14.24.pdf",
+      "used_for": "Experiential marketing and event sponsorship market context: global experiential marketing $116.14B in 2023, US experiential $52.80B in 2023, US event sponsorship $19.91B in 2023."
+    },
+    {
+      "id": "S12",
+      "name": "Twilio US SMS pricing",
+      "url": "https://www.twilio.com/en-us/sms/pricing/us",
+      "used_for": "SMS unit cost model: US long-code SMS $0.0083 outbound/inbound plus carrier fees, phone number charges, short-code lease pricing."
+    },
+    {
+      "id": "S13",
+      "name": "Twilio A2P 10DLC",
+      "url": "https://www.twilio.com/en-us/phone-numbers/a2p-10dlc",
+      "used_for": "10DLC compliance model: brand verification, campaign approval, phone-number association, restrictions, and approval timing."
+    },
+    {
+      "id": "S14",
+      "name": "Subtext 2026 announcement",
+      "url": "https://www.globenewswire.com/news-release/2026/03/25/3262208/0/en/subtext-surpasses-28-million-subscribers-and-10-billion-messages-in-2025-achieves-105-revenue-growth-yoy.html",
+      "used_for": "SMS creator/media benchmark: Subtext reports 28M subscribers, 10B messages in 2025, 105% YoY revenue growth, churn below 1%."
+    },
+    {
+      "id": "S15",
+      "name": "Community.com SMS marketing explainer",
+      "url": "https://community.com/blog/what-is-sms-marketing",
+      "used_for": "Community.com positioning benchmark: conversational SMS, contact-based pricing, claimed open/CTR/engagement statistics."
+    },
+    {
+      "id": "S16",
+      "name": "Apple Messages for Business guide",
+      "url": "https://www.zendesk.com/service/messaging/apple-messages-for-business/",
+      "used_for": "iMessage/Apple Business messaging platform risk: cost depends on messaging service provider, business pays MSP, Apple privacy/contact-verification features."
+    },
+    {
+      "id": "S17",
+      "name": "Message Central USA SMS guidelines",
+      "url": "https://www.messagecentral.com/sms-guideline/usa",
+      "used_for": "SMS compliance model: TCPA consent, CTIA rules, 10DLC/TCR registration, opt-out, quiet hours, penalties."
+    },
+    {
+      "id": "S18",
+      "name": "Messente RCS Business Messaging 2026 update",
+      "url": "https://messente.com/blog/state-of-rcs-business-messaging",
+      "used_for": "RCS platform shift: carrier support, iOS 18 support, RCS user growth, business-message volume estimates."
+    },
+    {
+      "id": "S19",
+      "name": "EZ Texting SMS statistics 2026",
+      "url": "https://www.eztexting.com/resources/sms-marketing-statistics",
+      "used_for": "US SMS marketing market context: Grand View Research estimate of $2.86B in 2023 and projected $9.96B by 2030."
+    }
+  ]
+}
